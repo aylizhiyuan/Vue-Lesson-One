@@ -1,0 +1,59 @@
+-----build 文件夹  项目构建的时候使用的文件以及一些webpack配置文件
+
+---------- build.js 构建的启动文件
+
+---------- check-versions.js 检查版本的js文件
+
+---------- utils.js 公共的方法
+
+---------- vue-loader.conf.js vue-loader的配置文件,将.vue文件里面的内容提取出来
+
+---------- webpack.base.conf.js webpack的基本配置信息
+
+---------- webpack.dev.conf.js webpack在测试环境下的配置信息
+
+---------- webpack.prod.conf.js webpack在生产环境下的配置信息
+
+
+------config文件夹   项目的配置信息
+
+----------------- dev.env.js 项目在测试环境下的配置信息
+
+----------------- index.js 项目的主要配置信息
+
+----------------- prod.env.js 项目在生产环境下的配置信息
+
+
+------ dist文件夹 项目构建完毕之后会生成dist文件夹
+
+------ node_modules 项目依赖的模块
+
+------ static 这里面放静态资源（图片、视频、音频）
+
+------ .babelrc babel的配置文件
+
+------ .editorconfig 编辑器的配置文件
+
+------ .gitignore git提交的时候要忽略的文件
+
+------ .postcssrc.js postcss的配置文件
+
+------ index.html 网站首页
+
+------ package.json npm init生成的一个模块的JSON文件，用来管理模块
+
+------ package-lock.json 是用来锁定package.json文件版本的
+
+------ readme.md markdown格式的项目说明
+
+------ src 所有项目文件都放在src里面
+
+---------- assets 里面放一些需要压缩的静态资源
+
+---------- components 组件
+
+---------- router 这是我们的路由文件
+
+---------- App.vue 是我们的根组件
+
+---------- main.js 项目的入口文件  

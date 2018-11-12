@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--v-if指令可以用来控制标签的显示与隐藏，当它的值是true的时候就显示，否则则隐藏...-->
+    <p v-if="seen">
+        你现在可以看到我了...
+    </p>
+</div>
+</body>
+</html>
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            seen:true
+        }
+    })
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if="box">
+        v-if方式的显示/隐藏
+    </div>
+    <div v-show="box2">
+        v-show方式的显示/隐藏
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            box:false,
+            box2:false
+        }
+    })
+</script>

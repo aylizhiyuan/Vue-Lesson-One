@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ol>
+        <!--v-for指令用来循环数组或者是对象这种数据-->
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            todos:[
+                {text:'学习javascript'},
+                {text:'学习mongodb'},
+                {text:'学习mysql'}
+            ]
+        }
+    })
+</script>

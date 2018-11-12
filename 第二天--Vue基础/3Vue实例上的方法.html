@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+    //通过vm实例对象中的$on方法挂载了一个自定义事件，事件的名称叫test事件，事件的处理函数是打印msg
+    vm.$on('test',function(msg){
+        console.log(msg);
+    })
+    //通过vm实例对象中的$emit方法触发test事件.
+    vm.$emit('test','hi');
+</script>

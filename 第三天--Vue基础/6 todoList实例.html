@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+<form v-on:submit.prevent="add">
+    <label>添加水果:</label>
+    <input type="text" placeholder="添加你喜欢的水果" v-model="newItem">
+    <input type="submit" value="提交">
+</form>
+<ul>
+    <li v-for="(item,index) in fruits">
+        <span>{{item.name}}</span>
+        <button v-on:click="fruits.splice(index,1)">删除</button>
+        <button v-on:click="modify(index)">修改</button>
+        <span v-show="modifyItem[index]">
+            <input type="text" v-model="updateItem[index]">
+            <button v-on:click="update(index)">提交</button>
+        </span>
+    </li>
+</ul>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            fruits:[
+                {id:1,name:'苹果'},
+                {id:2,name:'香蕉'},
+                {id:3,name:'西瓜'}
+            ],
+            newItem:'',
+            nextId:4,
+            updateItem:[],
+            modifyItem: []
+        },
+        methods:{
+            add:function(){
+                var id = this.nextId ++;
+                this.fruits.push({
+                    id:id,
+                    name:this.newItem
+                })
+            },
+            update:function(index){
+                this.fruits[index].name = this.updateItem;
+            },
+            modify:function(index){
+                //修改值的时候，尽量使用vm.$set方法.
+                vm.$set(this.modifyItem,index,true);
+            }
+        }
+    })
+</script>

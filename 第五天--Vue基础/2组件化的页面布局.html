@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+         * {
+             box-sizing:border-box;
+             margin:0;
+             padding:0;
+         }
+        ul {
+            list-style:none;
+        }
+        .header {
+            width:100%;
+            height:50px;
+            background:#db7093;
+            text-align:center;
+            line-height:50px;
+        }
+        .nav {
+            width:300px;
+            height:500px;
+            background:#afeeee;
+            float:left;
+        }
+        .main {
+            width:calc(100% - 300px);
+            height:500px;
+            background:#eee8aa;
+            float:left;
+        }
+        .nav ul {
+            padding:20px 0 0 20px;
+            line-height:30px;
+        }
+        .subnav {
+            padding:20px 0 0 20px;
+            line-height:30px;
+        }
+        .subnav:after {
+            display:block;
+            content:"";
+            overflow:hidden;
+            clear:both;
+            zoom:1;
+        }
+        .subnav li {
+            float:left;
+            margin-right:10px;
+        }
+        .artlist {
+            margin:0 20px;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <my-header></my-header>
+    <div class="nav">
+        <my-nav></my-nav>
+    </div>
+    <div class="main">
+        <router-view></router-view>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('my-header',{
+        template:"<div class='header'>欢迎！我是头部</div>"
+    })
+    Vue.component('my-nav',{
+        template:`<ul>
+            <li><router-link to="/menu1">我是菜单1</router-link></li>
+            <li><router-link to="/menu2">我是菜单2</router-link></li>
+            <li><router-link to="/menu3">我是菜单3</router-link></li>
+        </ul>`
+    })
+    var router = new VueRouter({
+        routes:[
+            //写多个路由规则
+            {
+                path:'/',
+                component:{
+                    template:"<div>我是默认没有菜单切换显示的内容</div>"
+                }
+            },
+            {
+                path:'/menu1',
+                component:{
+                    template:`<div>
+                         <ul class="subnav">
+                            <li>
+                            <router-link to="/menu1/guonei">国内新闻</router-link>
+                            </li>
+                            <li>
+                            <router-link to="/menu1/guoji">国际新闻</router-link>
+                            </li>
+                        </ul>
+                        <router-view></router-view>
+                    </div>`
+                },
+                children:[
+                    {
+                        path:'guonei',
+                        component:{
+                            template:`
+                                <ul class="artlist">
+                                    <li><router-link to="/menu1/guonei/:id">国内新闻1</router-link></li>
+                                    <li><router-link to="/menu1/guonei/:id">国内新闻2</router-link></li>
+                                </ul>
+                            `
+                        }
+                    },
+                    {
+                        path:'guoji',
+                        component:{
+                            template:`
+                                <ul class="artlist">
+                                    <li><router-link to="menu1/guoji/:id">国际新闻1</router-link></li>
+                                    <li><router-link to="menu1/guoji/:id">国际新闻2</router-link></li>
+                                </ul>
+                            `
+                        }
+                    },
+                ]
+            },
+            {
+                path:'/menu2',
+                component:{
+                    template:"<div>菜单2的内容</div>"
+                }
+            },
+            {
+                path:'/menu3',
+                component:{
+                    template:"<div>菜单3的内容</div>"
+                }
+            },
+        ]
+    })
+    var vm = new Vue({
+        el:'#app',
+        router,//路由生效
+        data:{
+
+        },
+    })
+</script>

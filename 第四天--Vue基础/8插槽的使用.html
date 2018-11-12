@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <alert-box>首页/公司简介</alert-box>
+    <alert-box>首页/联系我们</alert-box>
+    <alert-box>首页/产品介绍</alert-box>
+    <alert-box>首页/公司新闻</alert-box>
+    <alert-box></alert-box>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('alert-box',{
+        template:`<div><h1>欢迎来到我的网站</h1>,您现在所处的位置是<slot></slot></div>`
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>

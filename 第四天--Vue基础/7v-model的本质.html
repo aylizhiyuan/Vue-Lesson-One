@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<custom-input v-model="searchText"></custom-input>-->
+    <!--相当于-->
+    <custom-input v-bind:value="searchText" v-on:input="$event=searchText"></custom-input>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('custom-input',{
+        props:['value'],
+        template:`<input type="text" v-bind:value="value" v-on:input="$emit(input,$event.target.value)">`
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            searchText:""
+        }
+    })
+</script>

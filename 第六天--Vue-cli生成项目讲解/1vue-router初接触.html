@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>vue-router实例</h1>
+    <!--向koa发送一个请求，请求地址是/-->
+    <a href="http://localhost:3000/">访问首页</a>
+
+    <!--向vue-router发送一个请求，请求地址是/foo,请求显示foo组件-->
+    <router-link to="/foo">显示foo组件</router-link>
+    <!--向vue-router发送一个请求，请求地址是/bar,请求显示bar组件-->
+    <router-link to="/bar">显示bar组件</router-link>
+
+    <!--组件显示的内容区域-->
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script>
+    //vue-router的路由对象
+    var router = new VueRouter({
+        //vue-router的路由规则
+        routes:[
+            //path是路由的地址,component是路由地址需要加载的组件
+            //当用户想要访问/foo的时候，给它返回一个Foo组件
+            //当用户想要访问/bar的时候，给它返回一个Bar组件
+            {path:'/foo',component:{template:'<div>我是foo组件</div>'}},
+            {path:'/bar',component:{template:'<div>我是bar组件</div>'}}
+        ]
+    })
+    var vm = new Vue({
+        el:"#app",
+        router,//让路由对象生效
+        data:{
+
+        }
+    })
+</script>

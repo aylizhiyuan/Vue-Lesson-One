@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="add">add 1</button>
+    <p>The button above has been clicked {{counter}}</p>
+    <a href="http://www.baidu.com" v-on:click.prevent.once="alert">点击链接</a>
+    <!--按下space空格键的时候-->
+    <input type="text" v-on:keyup.space="print">
+    <!--按下ctrl + c键的时候-->
+    <input type="text" v-on:keyup.ctrl.67="stop">
+    <!--input按下enter键就提交-->
+    <input type="text" v-on:keyup.enter="submit">
+    <!--既有鼠标事件也有键盘事件.按下alt键或者是shift也会被触发 ctrl + alt/shift + 点击 都可以被触发-->
+    <button @click.ctrl="onClick">A</button>
+    <!--只有按下ctrl + 点击才可以被触发-->
+    <button @click.ctrl.exact="onClick">A</button>
+    <!--鼠标的修饰符-->
+    <a v-on:click.right="onClick">鼠标的修饰符</a>
+
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            counter:0
+        },
+        methods:{
+            //在add方法里面，如果要想调用data里面的数据，可以通过this.属性去调用
+            add:function(event){
+                this.counter += 1;
+                //事件处理函数中，始终会有一个event对象，这个event对象是JS原生的event对象...
+                console.log(event);
+            },
+            alert:function(){
+                alert(1);
+            },
+            print:function(){
+                console.log('你按下的是空格键')
+            },
+            onClick:function(){
+                console.log('打印测试');
+            }
+        }
+    })
+</script>

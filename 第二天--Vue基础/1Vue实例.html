@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+   <div v-if="box">我是隐藏的。。。。</div>
+</div>
+</body>
+</html>
+<script>
+    var data = {
+        a:1,
+        b:null //先给一个空值.
+    }
+    var vm = new Vue({
+        el:"#app",
+        data:data, //只有在data中挂载的数据才是双向绑定的，其余的数据无法做到.
+        methods:{
+            say:function(){
+                console.log('hi');
+            }
+        }
+    })
+    //使用实例化后的vue对象来访问data里面的数据.
+    console.log(vm.a);
+    data.a = 2;
+    //console.log(vm.a);
+    vm.a = 3;
+    //console.log(data.a);
+    vm.b = 'hello'; //不可以通过这种方式添加数据，如果需要添加b变量，需要在data中声明b变量.
+    vm.say();
+</script>

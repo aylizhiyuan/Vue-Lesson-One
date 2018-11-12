@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--v-bind是vue里面的一个绑定的内置指令，作用就是将后面的变量绑定到对应的HTML标签上-->
+    <!--在这里，就是将message这个变量绑定到span标签的title属性上.-->
+    <span v-bind:title="message">
+        鼠标悬停显示当前时间
+    </span>
+</div>
+</body>
+</html>
+<script>
+    var vue = new Vue({
+        el:'#app',
+        data:{
+            message:new Date().toLocaleString()
+        }
+    })
+</script>

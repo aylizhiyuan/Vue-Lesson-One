@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--阻止某个标签上的数据双向绑定-->
+    <span v-once>{{msg}}</span><br>
+    <span>{{msg}}</span><br>
+    <!--以HTML代码的格式输出-->
+    <span v-bind:id="msg" v-html="msg"></span>
+    <!--以表达式的方式输出-->
+    <span>{{number + 1}}</span>
+    <span>{{turn?true:false}}</span>
+    <!--不支持JS语句-->
+    <!--<span>{{console.log(number)}}</span>-->
+<button v-on:click="msg='hello'">修改</button>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"<li>hello vue</li>",
+            number:10,
+            turn:false
+        }
+    })
+</script>

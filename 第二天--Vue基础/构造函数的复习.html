@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //定义的时候
+    function test(){
+        //var box = 12;
+        //构造函数与普通函数的区别在于里面的数据挂载到this上.
+        this.box = 12;
+    }
+    //方法是公共的，所以挂载到构造函数的原型上.
+    test.prototype.hox = function(){
+        console.log('hox');
+    }
+
+    //使用的时候
+    var obj = new test();
+    console.log(obj.box);
+    obj.hox();
+    var obj2 = new test();
+    console.log(obj2.box);
+    obj2.hox();
+    //..........
+</script>

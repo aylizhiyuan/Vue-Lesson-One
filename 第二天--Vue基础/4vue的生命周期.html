@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <button v-on:click="message='hello world'">点击我更新数据</button>
+    <button v-on:click="destroy">销毁当前的vue程序</button>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        //生命周期的函数
+        beforeCreate:function(){
+            console.log('创建开始前...')
+        },
+        created:function(){
+            console.log('创建完成了...')
+        },
+        beforeMount:function(){
+            console.log('开始挂载了...')
+        },
+        mounted:function(){
+            console.log('挂载完成了...')
+        },
+        beforeUpdate:function(){
+            console.log('开始更新了....')
+        },
+        updated:function(){
+            console.log('更新完成了...')
+        },
+        beforeDestroy:function(){
+            console.log('开始销毁了....')
+        },
+        destroyed:function(){
+            console.log('销毁结束....')
+        },
+        data:{
+            message:'我是测试数据'
+        },
+        methods:{
+            destroy:function(){
+                vm.$destroy();
+            }
+        }
+    })
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        .active {
+            color:red;
+        }
+        .line {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="container" v-bind:class="{active:isActive,line:isLine}">动态绑定切换class</div>
+    <div class="container" v-bind:class="[a,b]">动态绑定class数组形式</div>
+    <div class="container" v-bind:style="{color:mycolor,fontSize:myfont}">动态绑定style</div>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            isActive:true,
+            isLine:true,
+            a:'active',
+            b:'line',
+            mycolor:'blue',
+            myfont:25 + 'px'
+        }
+    })
+</script>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+        #main {
+            width: 1200px;
+            height: auto;
+            margin: 0px auto;
+            /* border: 1px solid red; */
+        }
+    
+        .form>div {
+            margin: 20px 0px;
+            text-align: center;
+        }
+    
+        .form>div>input {
+            width: 500px;
+            height: 30px;
+            text-indent: 1em;
+            border: none;
+            box-shadow: 0px 0px 1px 1px #aaa;
+            border-radius: 3px;
+        }
+    
+        .form>div:last-child button {
+            border: none;
+            background-color: rgba(255, 0, 0, 0.61);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+    
+        .form>div:last-child button:last-child {
+            background-color: rgba(5, 90, 5, 0.7);
+        }
+    
+        #table {
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+    
+        .title {
+            width: 100%;
+            margin: 20px 0px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .title1 {
+            width: 100%;
+            margin: 0px;
+            padding: 20px 0px;
+            text-align: center;
+            font-size: 20px;
+            border-top: 1px solid rebeccapurple;
+            border-bottom: 1px solid rebeccapurple;
+        }
+        #table tbody {
+            width: 100%;
+            display: block;
+            font-size: 0px;
+        }
+        #table tr {
+            width: 100%;
+            display: block;
+            font-size: 0px;
+            border-top: 1px solid rebeccapurple;
+        }
+        #table tr:last-child {
+            border-bottom: 1px solid rebeccapurple;
+        }
+        #table tr th,
+        #table tr td {
+            width: 19%;
+            height: 40px;
+            display: inline-block;
+            font-size: 16px;
+            line-height: 40px;
+        }
+    
+        #table tr td {
+            height: 60px;
+            line-height: 60px;
+        }
+    
+        #table tr td button {
+            border: none;
+            background-color: rgba(255, 0, 0, 0.61);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+    
+        #table tr td button:last-child {
+            background-color: rgba(5, 90, 5, 0.7);
+        }
+    
+        #delete {
+            text-align: center;
+        }
+    
+        #delete button {
+            border: none;
+            background-color: rgba(5, 90, 5, 0.7);
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: #fff;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+    
+        #ModalaSkatolo {
+            width: 800px;
+            height: 270px;
+            background-color: #fff;
+            box-shadow: 0px 0px 1px 1px #aaa;
+            text-align: center;
+            padding: 30px 0px;
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            margin: auto;
+            z-index: 99;
+        }
+    
+        #fonaKoloro {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 90;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <form action="" class="form" @submit.prevent="add">
+            <div>
+                <label for="">姓名:</label>
+                <input type="text" placeholder="请填写您的姓名" required v-model="obj.username">
+            </div>
+            <div>
+                <label for="">年龄:</label>
+                <input type="text" placeholder="请填写您的年龄" required v-model="obj.age">
+            </div>
+            <div>
+                <label for="">性别:</label>
+                <input type="text" placeholder="请填写您的性别" required v-model="obj.sex">
+            </div>
+            <div>
+                <button type="submit">添加</button>
+                <button type="button" @click="obj = {}">重置</button>
+            </div>
+        </form>
+        <h2 class="title">用户信息表</h2>
+        <table id="table">
+            <tr>
+                <th>序列</th>
+                <th>姓名</th>
+                <th>年纪</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+            <div v-show="size">
+                <tr v-for="(item,index) in arr">
+                    <td>{{ index+1 }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.sex }}</td>
+                    <td>
+                        <button type="button" @click="edit(index)">编辑</button>
+                        <button type="button" @click="remove(index)">删除</button>
+                    </td>
+                </tr>
+            </div>
+            <template v-if="!size">
+                <h2 class="title1">暂无数据...</h2>
+            </template>
+        </table>
+        <div id="delete">
+            <button type="button" @click="del">全部删除</button>
+        </div>
+    
+        <div v-show="ModalaSkatolo">
+            <!-- 模态框 -->
+            <div id="ModalaSkatolo">
+                <h2>编辑用户信息</h2>
+                <form action="" class="form">
+                    <div>
+                        <label for="">姓名:</label>
+                        <input type="text" placeholder="请填写您的姓名" required v-model="obj2.username">
+                    </div>
+                    <div>
+                        <label for="">年龄:</label>
+                        <input type="text" placeholder="请填写您的年龄" required v-model="obj2.age">
+                    </div>
+                    <div>
+                        <label for="">性别:</label>
+                        <input type="text" placeholder="请填写您的性别" required v-model="obj2.sex">
+                    </div>
+                    <div>
+                        <button type="button" @click="update">添加</button>
+                        <button type="button" @click="cancel">取消</button>
+                    </div>
+                </form>
+            </div>
+            <div id="fonaKoloro"></div>
+        </div>
+    
+    </div>
+</body>
+</html>
+
+<script>
+     var vm = new Vue({
+        el: "#main",
+        data: {
+            obj: {},
+            obj2: {},
+            arr: [],
+            ModalaSkatolo: false, // 模态框显示隐藏
+            Index: null // 暂存索引
+        },
+        computed: {
+            size() {
+                if(this.arr != 0) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        },
+        methods: {
+            add() { // 添加
+                var obj = {};
+                for (index in this.obj) {
+                    obj[index] = this.obj[index];
+                }
+                this.arr.push(obj);
+            },
+            remove(index) { // 删除
+                this.arr.splice(index, 1);
+            },
+            del() {
+                this.arr = [];
+            },
+            update() { // 添加
+                var obj = {};
+                for (index in this.obj2) {
+                    obj[index] = this.obj2[index];
+                }
+                vm.$set(this.arr, this.Index, obj)
+                this.ModalaSkatolo = false;
+            },
+            cancel() { // 取消添加
+                this.obj2 = {};
+                this.ModalaSkatolo = false;
+            },
+            edit(index) { // 编辑
+                this.Index = index;
+                this.ModalaSkatolo = true
+            }
+        },
+
+    })
+</script>

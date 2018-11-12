@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--冒号后面是指定的参数，可以进一步的说明指令的类型或者是其他的一些信息-->
+    <span v-on:mouseover="alert">移入....</span>
+    <span v-bind:id="'abcd'"></span>
+    <a v-on:click.prevent="alert" href="http://www.baidu.com">点击我阻止默认行为</a>
+
+
+    <!--v-on指令的缩写形式-->
+    <span @mouseover="alert">移入....</span>
+    <!--v-bind指令的缩写形式-->
+    <span :id="abcd"></span>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods:{
+            alert:function(){
+                alert(1);
+            }
+        }
+    })
+</script>

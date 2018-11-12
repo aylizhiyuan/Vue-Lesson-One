@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ol>
+        <!--组件其实就是标签，只不过这个标签是我们自定义的标签，它的显示结果由我们定义.-->
+        <todo-item v-for="item in list" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    </ol>
+</div>
+</body>
+</html>
+<script>
+    /*组件其实最简单的理解就是一段HTML代码，封装到一个组件中去，可以重复使用.*/
+    //组件是一个单独的作用域，每一个组件都是一个独立的作用域范围，外面的数据进不来，里面的数据出不去.
+
+    Vue.component('todo-item',{
+        //设置可以传递给组件的属性名称.
+        props:['todo'],
+        template:"<li>{{todo.text}}</li>"
+    })
+    //启动Vue程序
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {id:0,text:"西瓜"},
+                {id:1,text:'苹果'},
+                {id:2,text:'香蕉'}
+            ]
+        }
+    })
+</script>

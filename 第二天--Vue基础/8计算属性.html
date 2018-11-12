@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>原来的信息：{{message}}</p>
+    <p>计算后的信息:{{reverseMessage}}</p>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            //放到data中的数据是数据和视图之间的绑定关系.
+            message:'hello'
+        },
+        //计算属性是该属性依赖于其他的属性，并且是通过一定复杂的运算得出的结果。
+        //它会直接调用getter函数,并且其他的属性如果发生变化的时候，计算属性会自动进行重新计算.
+        //这种属于数据和数据之间的绑定关系.
+        computed:{
+            reverseMessage:function(){
+                return this.message.split('').reverse().join('');
+            }
+        }
+    })
+</script>

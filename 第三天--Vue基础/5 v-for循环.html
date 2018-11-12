@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) in items">
+            {{index}} - {{item.message}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value,key) in object">
+            {{key}} : {{value}}
+        </li>
+    </ul>
+    <h1>{{test}}</h1>
+
+
+    <div v-for="n in 10">
+        {{n}}
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            items:[
+                {message:"foo"},
+                {message:"bar"}
+            ],
+            object:{
+                firstName:"tom",
+                lastName:"cluz",
+                age:30
+            }
+        }
+    })
+    //通过索引值直接修改数组，不会引发视图的变化
+    //不要试图去直接修改数组，通过索引这种方式.
+    //如果要修改数组的话，可以通过push()/pop()/shift()来对数组进行操作
+    vm.items[1] = {message:"baz"};
+
+    //推荐使用这种方式来修改数组
+    vm.$set(vm.items,1,{message:'baz'});
+
+    //修改对象的时候，它不是响应式的
+    //vm.test = 'asdfasdf'; //不推荐用这种方式添加数据.
+
+    //可以在已有对象上添加属性
+    vm.object.address = '河南郑州';
+    vm.$set(vm.object,'birthday','1989-10-21');
+
+
+
+
+
+
+</script>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/Vue.js"></script>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+        }
+    body,html{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body{
+        background: linear-gradient(0deg,rgb(84, 84, 194) 30%,rgb(177, 177, 245) 100%);
+    }
+    main{
+        width: 250px;
+        height: 400px;
+        background: white;
+        /* overflow: hidden; */
+        transition: 0.5s;
+        position: relative;
+        z-index: 1;
+    }
+    main:hover{
+        box-shadow: 0px 5px 10px rgb(82, 81, 81);
+    }
+    #waves{
+        width: 100%;
+        height: 250px;
+        background:linear-gradient(0deg,white 40%, rgb(158, 61, 145) 100%);
+        position: absolute;
+        overflow: hidden;
+        z-index: -1;
+    }
+    #waves #wave{
+        display: block;
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: -90px;
+        left: -25px;
+        opacity: 0.4;
+    }@keyframes zhuan{
+        100%{transform: rotate(360deg)};
+    }
+    .wave-1{
+        background: rgb(122, 122, 238);
+        border-radius: 40%;
+        animation: zhuan 5s linear infinite;
+    }
+    .wave-2{
+        background: rgb(75, 164, 223);
+        border-radius: 45%;
+        animation: zhuan 4s linear -1s infinite;
+    }
+    .wave-3{
+        background: rgb(156, 232, 238);
+        border-radius: 47%;
+        animation: zhuan 6s linear infinite;
+    }
+    form{
+        width: 170px;
+        /* background: red; */
+        margin-top: 20px;
+        font-weight: 100;
+        cursor: default;
+    }
+    label{
+        font-size: 14px;
+        color: white;
+    }
+    input{
+        width: 100px;
+        height: 20px;
+       border: 1px solid #ccc;
+       color: rgb(113, 145, 241);
+       padding-left: 5px;
+    }
+    #btn{
+        width: 45px;
+        height: 30px;
+        cursor: pointer;
+        font-size: 12px;
+        padding: 0;
+        color: white;
+        border: none;
+        margin-right: 13px;
+        transition: 0.3s;
+    }
+    #btn:hover{
+        box-shadow: 0 0 5px #ccc;
+    }
+    .content{
+        width: 100%;
+        height: 168px;
+        /* overflow-x: hidden;
+        overflow-y: auto; */
+        /* background: red; */
+        border-top: 0.5px solid rgb(241, 238, 238);
+        padding-top: 30px;
+    }
+    .header{
+        font-weight: 400;
+        width: 200px;
+        height: 20px;
+        text-align: center;
+        font-size: 11px;
+        line-height: 20px;
+        color: rgb(138, 134, 134);
+        border-bottom:0.5px solid #ccc;
+        position: fixed;
+        left: calc(50% - 100px);
+        margin-top: 10px;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.699);
+    }
+    .content #head{
+        width: 70%;
+        height: 25px;
+        background: #f0f0f0;
+        font-size: 11px;
+        line-height: 25px;
+        animation: move 0.5s ease both 1;
+        /* overflow: hidden; */
+        cursor: default;
+        position: relative;
+        z-index: 99;
+    }@keyframes move{
+        0%{
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    .content #head #name{
+        width: 35px;
+        margin-left: 37px;
+        background: rgb(128, 128, 240);
+        text-align: right;
+        padding-right: 5px;
+    }
+    .content  span{
+        display: inline-block;
+        width: 20px;
+        height: 25px;
+        background: rgb(160, 160, 252);
+        margin: 0 8px 0 0px;
+        text-align: center;
+        overflow: hidden;
+        color: white;
+        
+    }
+    .content i{
+        display: block;
+        width: 37px;
+        height: 25px;
+        position: absolute;
+        text-align: center;
+        line-height: 25px;
+        top: 0;
+        cursor: pointer;
+        transition: 0.5s;
+        color: white;
+       
+    }
+    .content i:nth-of-type(1){
+        opacity: 0;
+        left: -40px;
+        background: rgb(155, 247, 94);
+    }
+    .content i:nth-of-type(2){
+        opacity: 0;
+        right:-40px;
+        background: rgb(247, 94, 94);
+    }
+    .content div:hover i:nth-of-type(1){
+     left: 0;
+     opacity: 0.8;
+    }
+    .content div:hover i:nth-of-type(2){
+     right: -1px;
+     opacity: 0.8;
+    }@keyframes show{
+        0%{transform: scale(0.5);opacity: 0;}
+        100%{transform: scale(1);opacity: 1;}
+    }
+    .pp{
+        width: 200px;
+        height: 140px;
+        background: rgba(247, 244, 244, 0.692);
+        position: absolute;
+        z-index: 9999999;
+        top: -30px;
+        /* left: calc(50% - 120px); */
+        left: 220px;
+        animation: show 0.5s ease 1 both;
+        padding: 20px;
+    }
+    .pp label{
+        color: royalblue;
+        font-weight: 100;
+    }
+    .pp button{
+        width: 40px;
+        margin-top: 10px;
+        margin-left: 115px;
+        background: rgb(108, 221, 104);
+        text-align:center;
+        padding: 5px;
+        border: none;
+        font-size: 12px;
+        color: white;
+    }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background: rgba(41, 40, 40, 0.582);
+        position: absolute;
+        z-index: 1;
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="cover"></div>
+    <main>
+        <div id="waves">
+        <span id="wave" class="wave-1"></span>
+        <span id="wave" class="wave-2"></span>
+        <span id="wave" class="wave-3"></span>
+        </div>
+     <div id="app">
+     <form v-on:submit.prevent='add'>
+         <label for="">Name : </label>
+         <input type="text" v-model="newName" required><br><br>
+         <label for="">&nbsp;&nbsp;&nbsp;Age :</label>
+         <input type="text"  v-model="newAge" required><br><br>
+         <label for="">&nbsp;&nbsp;&nbsp; Sex :</label>
+         <input type="text"  v-model="newSex" required><br><br>
+         <input type="submit" value="submit" id="btn" style="background:rgb(110, 110, 226);margin-left:49px;">
+         <input type="reset" value="reset" id="btn"  style="background:rgb(173, 173, 247)">
+     </form><br>
+     <section class="header">
+            &nbsp;Name &#x3000;&nbsp;Age&#x3000;Sex
+     </section>
+     <section class="content">
+      <div v-for="(item,index) in peoples" id="head">
+          <!-- 修改 -->
+        <i class="fa fa-gear"    @click="modify(index)" ></i>
+        <!-- <span>{{index+1}}</span> -->
+       <span id="name">{{item.name}}</span>
+       <span>{{item.age}}</span>
+       <span>{{item.sex}}</span>
+       <!-- 删除 -->
+       <i class="fa fa-trash-o" @click="peoples.splice(index,1)"></i>
+
+         <!-- 弹框部分 -->
+           <!-- <div class="pop-up" > -->
+            <div class="pp"  v-show="modifyItem[index]" >
+             <label for="">Name : </label>
+             <input type="text" v-model="updateName[index]"><br>
+             <label for="">&nbsp;&nbsp;&nbsp;Age :</label>
+             <input type="text" v-model="updateAge[index]"><br>
+             <label for="">&nbsp;&nbsp;&nbsp; Sex :</label>
+             <input type="text" v-model="updateSex[index]"><br>
+             <button  @click="update(index)" >提交</button>
+            </div>
+           </div>
+      <!-- </div> -->
+     </section>
+     </div>
+    </main>
+</body>
+
+<script>
+var vm = new Vue({
+    el:"#app",
+    data:{
+        peoples:[
+            {id:1,name:'孙文旭',age:21,sex:'男'},
+            {id:2,name:'李红',age:20,sex:'女'}
+        ],
+        newName:'',
+        newAge:'',
+        newSex:'',
+        nextId:3,
+        updateName:[],
+        updateAge:[],
+        updateSex:[],
+        modifyItem:[]
+    },
+    methods:{
+        add(){
+            var id = this.nextId++;
+            this.peoples.push({id:id,name:this.newName,age:this.newAge,sex:this.newSex})
+            this.newName = '';
+            this.newAge = '';
+            this.newSex = '';
+        },
+        update: function (index) {
+            this.peoples[index].name = this.updateName[index];
+            this.peoples[index].age = this.updateAge[index];
+            this.peoples[index].sex = this.updateSex[index];
+             //点击时调用弹框，使他变为false，消失
+            vm.$set(this.modifyItem,index,false);
+        },
+        modify: function (index) {
+            //点击时调用弹框，使他变为true，显示
+            vm.$set(this.modifyItem,index,true);
+        }
+    }
+})
+</script>
+</html>

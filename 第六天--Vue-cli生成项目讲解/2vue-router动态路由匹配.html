@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/user/foo">访问/user/foo</router-link>
+    <router-link to="/user/bar">访问/user/bar</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script>
+    var router = new VueRouter({
+        routes:[
+            {
+                path:'/user/:name',
+                component:{
+                    template:"<div>您访问的是一个动态路由,这个动态参数是{{$route.params}}</div>"
+                }
+            }
+        ]
+    })
+    var vm = new Vue({
+        el:"#app",
+        router,
+        data:{
+
+        }
+    })
+</script>

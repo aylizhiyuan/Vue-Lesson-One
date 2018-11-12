@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--组件在调用的时候，使用的就是以它的名字作为标签名的标签-->
+    <button-count></button-count>
+    <button-count></button-count>
+    <button-count></button-count>
+</div>
+</body>
+</html>
+<script>
+    //声明一个组件，使用的是Vue.component方法
+    Vue.component('button-count',{
+        //传递给组件的参数
+        data:function(){
+            return {
+                //组件中的data数据必须使用return {}对象这种方式
+                count:0
+            }
+        },
+        //组件的HTML代码部分
+        template:'<button v-on:click="count+=1">{{count}}</button>',
+        methods:{
+            //组件的方法
+        },
+        created:function(){
+            //组件的生命周期....
+        }
+        //.........
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'hello vue'
+        },
+        //这里面是可以进行局部注册的.
+        //只能在当前页面使用
+        components:{
+
+        }
+    })
+</script>

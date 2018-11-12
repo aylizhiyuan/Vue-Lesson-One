@@ -1,0 +1,13 @@
+"webpack": "^3.6.0",
+
+"webpack-bundle-analyzer": "^2.9.0",
+
+"webpack-dev-server": "^2.9.1", //支持你启动一个类似于express的服务器，方便进行调试
+
+"webpack-merge": "^4.1.0" //支持webpack合并，webpack文件
+
+
+其中webpack 是核心模块，其余都是功能扩展 
+
+
+相当于买PS游戏机，除了机器之外，还需要游戏卡才能玩儿游戏.

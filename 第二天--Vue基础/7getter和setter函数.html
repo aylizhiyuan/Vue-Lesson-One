@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+   var obj = {
+       //假设num是商品的数量
+       num:1,
+       //假设price是商品的单价
+       price:250
+   }
+   //计算属性：它跟普通属性是不一样的，它是经过计算算出来的，如果数据发生变化，计算属性会重新进行计算，得到最新的值.
+   Object.defineProperty(obj,'total',{
+       //当你试图想去访问obj.total的时候，会自动调用get函数进行处理.
+       get:function(){
+           return this.num * this.price;
+       },
+       //当你试图去修改obj.total的时候，会自动调用set函数进行处理.
+       set:function(val){
+           if(val > 1000){
+               console.log('太贵了，不要买了');
+           }
+       }
+   })
+   obj.num = 5;
+   obj.price = 500;
+   console.log(obj.total);
+   obj.total = 100000000;
+
+</script>

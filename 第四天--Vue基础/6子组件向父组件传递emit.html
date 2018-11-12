@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="blog-post" v-bind:style="{fontSize:postFontSize + 'px'}">
+        <blog-post v-for="post in posts" v-on:large-text="changeText" v-bind:key="post.id" v-bind:post="post"></blog-post>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    //1。在button中定义个点击事件，这个点击事件的执行的结果是通过Vue.$emit方法触发一个事件这个事件叫large-text(注意，这里不能使用驼峰式命名)
+    //同时，传递一个参数 10 传递到事件处理函数中去.
+    //2.changeText函数是在父组件中定义的一个函数，子组件通过$.emit触发了父组件上的changeText函数，并且子组件传递过来的参数，也可以在changeText
+    //函数中得到.
+    //这样，就完成了子组件向父组件传值的整个过程.
+    Vue.component('blog-post',{
+        props:['post'],
+        template:`
+        <div>
+            <h3>{{post.title}}</h3>
+            <button v-on:click="$emit('large-text',10)">字体变大</button>
+        </div>
+        `
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            posts:[
+                {id:1,title:'my vue is very fun'},
+                {id:2,title:'my apple is red'},
+                {id:3,title:'my orange is yellow'}
+            ],
+            postFontSize:20,
+        },
+        methods:{
+            changeText:function(value){
+                this.postFontSize += value
+            }
+        }
+    })
+</script>

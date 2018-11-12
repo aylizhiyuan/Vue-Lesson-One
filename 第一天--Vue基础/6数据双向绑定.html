@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--花括号的作用就是将数据绑定到视图-->
+    <p>{{message}}</p>
+    <!--v-model指令的作用就是将视图绑定到数据-->
+    <input type="text" v-model="message">
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello vue"
+        }
+    })
+</script>

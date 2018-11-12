@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{foo}}
+    <button v-on:click="foo='baz'">修改obj的值</button>
+</div>
+</body>
+</html>
+<script>
+    var obj = {
+        foo:'bar',
+    }
+    //阻止修改和添加对象的值.
+    //Object.freeze(obj);
+    var vm = new Vue({
+        el:"#app",
+        data:obj,
+        comments:'测试'
+    })
+    //访问data定义的数据
+    //console.log(vm.foo);
+    //同样也是访问data定义的数据
+    //console.log(vm.$data);
+    //如果有接收的props值，那么通过vm.$props可以访问到
+    //console.log(vm.$props);
+    //Vue实例的根元素
+    //console.log(vm.$el);//node类型
+    //实例化Vue的时候传递过来的参数
+    //console.log(vm.$options);
+    vm.$watch('foo',function(newVal,oldVal){
+        console.log(`新的值是${newVal}`);
+        console.log(`旧的值是${oldVal}`);
+    })
+</script>

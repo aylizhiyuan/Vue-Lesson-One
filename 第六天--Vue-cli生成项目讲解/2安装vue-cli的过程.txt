@@ -1,0 +1,72 @@
+1.首先通过npm install vue-cli -g 全局安装脚手架,安装成功之后，默认会放在你电脑的这个位置： c:/users/(登录操作系统的用户名)/appData/roaming/npm ,注意，appData是一个隐藏文件夹，如果找不到，就打开文件的查看，将隐藏选项选中即可.
+
+2.默认安装的脚手架是vue-cli 3.0的版本，因为考虑到现在大部分的项目都是通过vue-cli 2.0生成的，所以，为了兼容2.0版本，我们还需要安装一个 npm install @vue/cli-init -g 
+
+3.以上都安装成功之后，就可以使用vue init 命令生成项目了
+
+
+4. vue init webpack 项目名称 : 生成一个带有webpack打包功能的项目
+vue init webpack-simple 项目名称：生成一个功能略少的webpack打包功能的项目
+
+5.
+
+project name : 项目名称
+project description :项目描述
+author : 作者信息
+runtime + compiler :适合于大多数人的编译
+install vue-router :是否安装vue-router
+Use ESLint to lint your code :是否安装ESLint代码检查
+Set up unit tests: 是否要设置单元测试
+setup E2E tests with Nightwatch :代码的监视器，一般默认不安装
+
+6.大家在安装某些包的时候，经常会出现npm 安装不成功的提示，这时候，可以使用yarn试一试，yarn的安装方式：npm install yarn -g 全局安装
+
+
+7.package.json文件中scripts里面放的是可以通过npm命令运行的脚本程序.这些脚本可以通过npm run + 脚本名称(dev,start,build)来运行.
+
+npm run dev 在开发环境中打开项目
+
+npm run start 在开发环境中打开项目
+
+npm run build 构建项目，为上线做准备，上线之前，项目里面的代码都需要进行压缩、打包才可以上线，这个命令会生成一个dist文件夹，里面放的就是打包好的项目文件。上线的时候，直接将dist文件夹放到空间里面就可以了
+
+dependencies: 里面放的是这个项目在上线阶段用到的模块
+
+devdependencies:里面放的是这个项目在测试阶段（开发阶段）用到的模块，这些模块上线后就不再需要了，因为已经通过npm run build打包过了，测试阶段的模块的任务已经完成了。所以就不
+需要了
+
+
+项目一般情况下，我们分为两种环境：
+
+1、 开发环境，项目制作整个过程就是属于开发环境
+
+2、 生产环境，项目已经跑到线上的时候。。。项目上线了....
+
+
+注：
+
+
+提前安装webpack4 ,使用 npm install webpack -g  ，会提示你安装webpack-cli
+
+npm install webpack-cli -g 就可以了。。。
+
+
+Vue init 生成的项目是 vue 2.5.2 + webpack 3.6.0 版本的 
+
+github地址：https://github.com/vuejs-templates/webpack
+
+vue create 生成的项目是 vue 2.5.2 + webpack 4版本的
+
+（必须使用yarn安装，npm install yarn -g ）
+
+
+
+
+
+
+
+
+
+
+
+

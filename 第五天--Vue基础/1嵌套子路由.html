@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        * {
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+        body,html {
+            margin:0;
+            padding:0;
+        }
+        .nav {
+            display:inline-block;
+            list-style:none;
+        }
+        .nav li {
+            margin:10px;
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--除了使用router-link之外，还可以使用router.push方法完成页面的跳转-->
+    <button v-on:click="gotonews">编程式的页面跳转</button>
+    <ul class="nav">
+        <li><router-link to="/">首页</router-link></li>
+        <li><router-link to="/about">公司介绍</router-link></li>
+        <li><router-link to="/news">公司新闻</a></li>
+    </ul>
+    <!--这里面是要显示一个组件的，这个组件是什么，就看路由规则如果制定-->
+    <router-view></router-view>
+    <router-view name="footer"></router-view>
+</div>
+</body>
+</html>
+<script>
+    //创建一个路由对象
+    var router = new VueRouter({
+        //路由规则
+        routes:[
+            //path参数是指明路由的路径,用户请求的地址
+            //component指明这个地址对应的组件
+            {
+                path:'/',
+                components:{
+                    default:{
+                        template:`<div>我是首页的内容</div>`
+                    },
+                    footer:{
+                        template:"<div>我是首页的尾部</div>"
+                    }
+                }
+            },
+            {
+                path:'/about',
+                components:{
+                    default:{
+                        template:"<div>我是关于我们的内容</div>"
+                    },
+                    footer:{
+                        template:"<div>我是关于我们的尾部</div>"
+                    }
+                }
+            },
+            {
+                path:'/news',
+                components:{
+                    /*命名视图*/
+                    default:{
+                        template:`<div>
+                        <ul class="nav">
+                            <li><router-link to="/news/guonei">国内新闻</router-link></li>
+                            <li><router-link to="/news/guoji">国际新闻</router-link></li>
+                        </ul>
+                        <router-view></router-view>
+                    </div>`
+                    },
+                    footer:{
+                        template:"<div>我是公司新闻的尾部</div>"
+                    }
+                },
+                //子路由的写法
+                children:[
+                    {
+                        path:'guonei',
+                        component:{
+                            template:"<div>国内新闻的内容</div>"
+                        }
+                    },
+                    {
+                        path:'guoji',
+                        component:{
+                            template:"<div>国际新闻的内容</div>"
+                        }
+                    }
+                ]
+            },
+            //如果你无视路由的嵌套，那么你写的路由将不会生效
+            /*{
+                path:'/user/guonei',
+                component:{
+                    template:"<div>我是国内新闻</div>"
+                }
+            },
+            {
+                path:'/user/guoji',
+                component:{
+                    template:"<div>我是国际新闻</div>"
+                }
+            },*/
+        ]
+    })
+    var vm = new Vue({
+        el:"#app",
+        router, //让路由规则生效
+        data:{
+
+        },
+        methods:{
+            gotonews:function(){
+                //使用编程式的方式跳转页面.
+                this.$router.push('/news');
+            }
+        }
+    })
+</script>

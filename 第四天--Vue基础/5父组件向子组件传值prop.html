@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:id="post.id" v-bind:title="post.title"></blog-post>
+</div>
+</body>
+</html>
+<script>
+    //prop就是有父子关系的组件中，父组件向子组件传值,指定组件调用中的某个属性，通过这个属性，将属性值传递给
+    //组件内部使用.
+    Vue.component('blog-post',{
+        props:['title','id'],
+        //template里面的内容必须包含在一个根标签下!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        template:'<div><h3>{{id}}----{{title}}</h3><p>这是一个段落...</p></div>'
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            posts:[
+                {id:1,title:'my vue is very fun'},
+                {id:2,title:'my apple is red'},
+                {id:3,title:'my orange is yellow'}
+            ]
+        }
+    })
+</script>

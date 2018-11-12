@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--输出message内容-->
+</div>
+</body>
+</html>
+<script>
+    //1.选中id为app的div元素
+    var div = document.querySelector('#app');
+    var message = 'hello world';
+    //2.改变div元素的内容，将message变量输出到div里面去.
+    div.innerHTML = message;
+    //3.如果在这个时候我去改变变量message的值，页面不会发生任何变化.
+    message = 'hello no world';
+    //4.再次使用innerHTML去改变页面
+    div.innerHTML = message;
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--将message的值跟input表单中输入的内容绑定到一起-->
+    <!--一旦用户在输入内容的时候，message的值会自动的发生变化-->
+    <!--在input表单中绑定的这个数据一定要在data中定义-->
+    <input type="text" v-model="message">
+    {{message}}
+    <br>
+    <!--绑定一个复选框-->
+    <!--选中后singlechecked值为true-->
+    <!--未选中的时候singlecheced的值为false-->
+    <input type="checkbox" v-model="singleChecked">
+    {{singleChecked}}
+    <br>
+    <!--绑定多个复选框-->
+    <label>john</label>
+    <input type="checkbox" value="john" v-model="checkNames">
+    <label>Jack</label>
+    <input type="checkbox" value="jack" v-model="checkNames">
+    <label>Rose</label>
+    <input type="checkbox" value="rose" v-model="checkNames">
+    {{checkNames}}
+    <br>
+    <!--绑定单选框-->
+    <label>苹果</label>
+    <input type="radio" value="apple" v-model="like">
+    <label>香蕉</label>
+    <input type="radio" value="banana" v-model="like">
+    {{like}}
+    <br>
+    <!--下拉选项-->
+    <select v-model="choose">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    {{choose}}
+    <br>
+    <!--选择的时候可以将值变为动态的值-->
+    <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+    {{toggle}}
+    <br>
+    <!--v-model上的修饰词-->
+    <!--等数据变化完毕之后，再更新视图-->
+    <input type="text" v-model.lazy="a"> {{a}}
+    <!--限制number类型-->
+    <input type="number" v-model.number="b">{{b}}
+    <!--去除前尾空格-->
+    <input type="text" v-model.trim="c">{{c}}
+</div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"hello vue!",
+            singleChecked:false,
+            checkNames:[],
+            like:'',
+            choose:'',
+            toggle:'',
+            a:'',
+            b:'',
+            c:''
+        }
+    })
+</script>

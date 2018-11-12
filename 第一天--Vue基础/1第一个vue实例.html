@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--1.使用vue的时候，首先使用script标签引入vue.js文件-->
+    <script src="vue.js"></script>
+</head>
+<body>
+<!--挂载Vue启动位置的时候，不能挂载到html标签以及body标签上，这是vue的规定.-->
+<div id="app">
+    <!--在vue中声明的变量可以通过双花括号输出-->
+        <div>
+            {{ message }}
+        </div>
+</div>
+<div class="app">
+    <div>
+        {{ message }}
+    </div>
+</div>
+<!--如果超出了Vue启动范围的话，模板语法是不起作用的.-->
+{{ message }}
+</body>
+</html>
+<script>
+    /*引入JS文件之后，会暴露一个window.Vue构造函数*/
+    //console.dir(Vue);
+    //Vue是一个构造函数，需要实例化使用.
+    var vue = new Vue({
+        el:"#app",//Vue启动的文档的位置
+        data:{
+            message:'hello nasdfasdfasdfasdfasf world' //设置传递给HTML的变量参数.
+        }
+    })
+    //适合于使用Vue的场景一般用在数据量比较大，数据变化比较快的项目中：
+    //例如：电商、论坛、直播、股票、金融、物流.....
+    //一般企业站，数据量变化比较小，建议直接使用原生JS写代码。
+</script>
